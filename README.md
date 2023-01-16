@@ -20,17 +20,17 @@
 ## items
 
 * Database initialization
-| Column        | Type       | Options                        |
-|---------------|------------|--------------------------------|
-| name          | string     | null: false                    |
-| explanation   | text       | null: false                    |
-| category      | integer    | null: false                    |
-| state         | integer    | null: false                    |
-| cost          | integer    | null: false                    |
-| area          | integer    | null: false                    |
-| shipping_date | integer    | null: false                    |
-| price         | integer    | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| Column      | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| name        | string     | null: false                    |
+| explanation | text       | null: false                    |
+| category    | integer    | null: false                    |
+| state       | integer    | null: false                    |
+| ship_cost   | integer    | null: false                    |
+| ship_area   | integer    | null: false                    |
+| ship_date   | integer    | null: false                    |
+| price       | integer    | null: false                    |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -48,7 +48,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :payment
+- belongs_to :payment
 
 
 
@@ -62,7 +62,7 @@
 | address       | string     | null: false                    |
 | building      | string     |                                |
 | phone_number  | string     | null: false                    |
-| orders        | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :order
+- has_one :order
