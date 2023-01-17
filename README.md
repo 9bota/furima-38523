@@ -2,16 +2,16 @@
 
 ## users
 
-| Column             | Type   | Options                       |
-|--------------------|--------|-------------------------------|
-| nickname           | string | null: false                   |
-| email              | string | null: false, uniqueness: true |
-| encrypted_password | string | null: false                   |
-| last_name          | string | null: false                   |
-| first_name         | string | null: false                   |
-| last_name_kana     | string | null: false                   |
-| first_name_kana    | string | null: false                   |
-| birthday           | date   | null: false                   |
+| Column             | Type   | Options                   |
+|--------------------|--------|---------------------------|
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 - has_many :items
@@ -22,17 +22,17 @@
 ## items
 
 * Database initialization
-| Column             | Type       | Options                        |
-|--------------------|------------|--------------------------------|
-| name               | string     | null: false                    |
-| explanation        | text       | null: false                    |
-| category_id        | integer    | null: false                    |
-| state_id           | integer    | null: false                    |
-| ship_cost_id       | integer    | null: false                    |
-| ship_prefecture_id | integer    | null: false                    |
-| ship_date_id       | integer    | null: false                    |
-| price              | integer    | null: false                    |
-| user               | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+|---------------|------------|--------------------------------|
+| name          | string     | null: false                    |
+| explanation   | text       | null: false                    |
+| category_id   | integer    | null: false                    |
+| state_id      | integer    | null: false                    |
+| ship_cost_id  | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| ship_date_id  | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
