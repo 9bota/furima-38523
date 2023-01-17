@@ -1,5 +1,7 @@
 # README
 
+## users
+
 | Column             | Type   | Options                       |
 |--------------------|--------|-------------------------------|
 | nickname           | string | null: false                   |
@@ -20,17 +22,17 @@
 ## items
 
 * Database initialization
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| name        | string     | null: false                    |
-| explanation | text       | null: false                    |
-| category    | integer    | null: false                    |
-| state       | integer    | null: false                    |
-| ship_cost   | integer    | null: false                    |
-| ship_area   | integer    | null: false                    |
-| ship_date   | integer    | null: false                    |
-| price       | integer    | null: false                    |
-| user        | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| name               | string     | null: false                    |
+| explanation        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| state_id           | integer    | null: false                    |
+| ship_cost_id       | integer    | null: false                    |
+| ship_prefecture_id | integer    | null: false                    |
+| ship_date_id       | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -48,7 +50,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :payment
+- has_one :payment
 
 
 
@@ -57,7 +59,7 @@
 | Column        | Type       | Options                        |
 |-------------- |----------- |------------------------------- |
 | postcode      | string     | null: false                    |
-| prefecture    | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building      | string     |                                |
@@ -65,4 +67,4 @@
 | order         | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :order
+- belongs_to :order
