@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :items
-  has_many :orders
+  # has_many :items
+  # has_many :orders
 
   #ニックネームが必須であること
   validates :nickname, presence: true
@@ -22,8 +22,8 @@ class User < ApplicationRecord
   # パスワードとパスワード（確認）の値が一緒であること → devise標準実装のため省略
   # 名前（全角）は名字・名前がそれぞれ必須であること
   # 名前（全角）は全角（漢字・ひらがな・カタカナ）での入力が必須であること
-  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
   # 名前カナ（全角）は名字・名前がそれぞれ必須であること
   # 名前カナ（全角）は全角（カタカナ）での入力が必須であること
   validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
