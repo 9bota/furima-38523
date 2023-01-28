@@ -16,7 +16,6 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :user_id
     validates :image
     validates :name
     validates :explanation
@@ -26,7 +25,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :ship_date_id
     # 300円以下と9,999,999円以下は表示保存できない
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   end
 
   # ジャンルの選択が「---」の時は保存できない
