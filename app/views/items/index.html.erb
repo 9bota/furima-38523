@@ -131,7 +131,7 @@
     <%# 商品データがある場合は、下記表示 %>
     <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to item_path(item) do %>
         <div class='item-img-content'>
         <%= image_tag item.image, class: "item-img" if item.image.attached? %>
           <%# 商品が売れていればsold outを表示する＊商品購入実装後 %>
@@ -159,7 +159,7 @@
       <%# 商品がない場合は以下のダミー商品が表示される %>
       <% if @items.blank? then %>
         <li class='list'>
-          <%= link_to '#' do %>
+          <%= link_to "#" do %>
           <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
           <div class='item-info'>
             <h3 class='item-name'>
