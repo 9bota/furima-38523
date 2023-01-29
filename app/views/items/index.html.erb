@@ -131,14 +131,14 @@
     <%# 商品データがある場合は、下記表示 %>
     <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to items_path(item) do %>
+        <%= link_to '#' do %>
         <div class='item-img-content'>
         <%= image_tag item.image, class: "item-img" if item.image.attached? %>
-          <%# 商品が売れていればsold outを表示しましょう %>
+          <%# 商品が売れていればsold outを表示する＊商品購入実装後 %>
           <%#div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
+          <%# //以上 %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -156,8 +156,7 @@
       </li>
       <% end %>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+      <%# 商品がない場合は以下のダミー商品が表示される %>
       <% if @items.blank? then %>
         <li class='list'>
           <%= link_to '#' do %>
@@ -177,8 +176,7 @@
           <% end %>
         </li>
       <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+
     </ul>
   </div>
   <%# /商品一覧 %>
