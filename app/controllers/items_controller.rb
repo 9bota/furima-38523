@@ -1,8 +1,6 @@
 class ItemsController < ApplicationController
   # ログインしていないユーザーはログインページへ移行する
   before_action :authenticate_user!, except: [:index, :show]
-  # 重複箇所
-  before_action :set_item, only: [:show, :edit, :update,]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -22,33 +20,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
-  end
-
-  def edit
-    if @item.user_id == current_user.id 
-    else
-      redirect_to root_path
-    end
-  end
-
-  def update
-    @item.update(item_params)
-    if @item.valid?
-      redirect_to item_path(item_params)
-    else
-      render 'edit'
-    end
+    @item = Item.find(params[:id])
   end
 
   private
 
   def item_params
     params.require(:item).permit(:image, :name, :explanation, :category_id, :state_id, :ship_cost_id, :prefecture_id, :ship_date_id, :price).merge(user_id: current_user.id)
-  end
-
-  def set_item
-    @item = Item.find(params[:id])
   end
 
 end
