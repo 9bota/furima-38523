@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
     if @item.valid?
       redirect_to item_path(item_params)
     else
-      redirect_to root_path
+      render 'edit'
     end
   end
 
