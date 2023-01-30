@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   # ログインしていないユーザーはログインページへ移行する
   before_action :authenticate_user!, except: [:index, :show]
   # 重複箇所
-  before_action :set_item, only: [:show, :edit, :update,]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -40,6 +40,16 @@ class ItemsController < ApplicationController
       render 'edit'
     end
   end
+
+  def destroy
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
 
   private
 
