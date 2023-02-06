@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
   # ログインしていないユーザーはログインページへ移行する
   before_action :authenticate_user!, except: [:index, :show]
+
   # 重複箇所
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_root_path, only: [:edit, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -26,7 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id == current_user.id 
+    if @item.order.nil?
     else
       redirect_to root_path
     end
@@ -42,12 +44,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.user_id == current_user.id
-      @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    @item.destroy
+    redirect_to root_path
   end
 
 
@@ -59,6 +57,13 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def move_root_path
+    if @item.user_id == current_user.id
+    else
+      redirect_to root_path
+    end
   end
 
 end
